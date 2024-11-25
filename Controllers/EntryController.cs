@@ -66,5 +66,25 @@ namespace ekozigPersonEntryDemo.Controllers
 
             return View(entries);
         }
+
+        public IActionResult Delete(int id)
+        {
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "DELETE FROM entry WHERE Id = @Id";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Id", id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
