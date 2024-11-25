@@ -25,7 +25,7 @@
     </div>
     <div>
         <label asp-for="Sex"></label>
-        <input asp-for="Sex" />
+        <select asp-for="Sex" asp-items="@(new SelectList(new[] { new { Value = 1, Text = "Male" }, new { Value = 2, Text = "Female" }, }, "Value", "Text"))"></select>
     </div>
     <button type="submit">Submit</button>
 </form>
