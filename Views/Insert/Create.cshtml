@@ -1,0 +1,31 @@
+﻿@model ekozigPersonEntryDemo.Models.Entry
+
+<h2>Create New Entry</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+    </div>
+    <div>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
+    </div>
+    <div>
+        <label asp-for="AddressID"></label>
+        <input asp-for="AddressID" />
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </div>
+    <div>
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" />
+    </div>
+    <div>
+        <label asp-for="Sex"></label>
+        <input asp-for="Sex" />
+    </div>
+    <button type="submit">Submit</button>
+</form>
