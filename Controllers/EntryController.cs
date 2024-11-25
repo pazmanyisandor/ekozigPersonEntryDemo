@@ -22,7 +22,7 @@ namespace ekozigPersonEntryDemo.Controllers
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT Id, FirstName, LastName FROM entry";
+                string query = "SELECT Id, FirstName, LastName, AddressID, Email, Phone, Sex FROM entry";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -34,7 +34,11 @@ namespace ekozigPersonEntryDemo.Controllers
                             {
                                 Id = reader.GetInt32(0),
                                 FirstName = reader.GetString(1),
-                                LastName = reader.GetString(2)
+                                LastName = reader.GetString(2),
+                                AddressID = reader.GetInt32(3),
+                                Email = reader.GetString(4),
+                                Phone = reader.GetString(5),
+                                Sex = reader.GetString(6)
                             });
                         }
                     }
