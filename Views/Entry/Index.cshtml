@@ -13,10 +13,17 @@
                 <th>ID</th>
                 <th>FirstName</th>
                 <th>LastName</th>
-                <th>AddressID</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Sex</th>
+                <th>PostCode</th>
+                <th>Town</th>
+                <th>Street</th>
+                <th>StreetType</th>
+                <th>HouseNumber</th>
+                <th>Floor</th>
+                <th>Door</th>
+                <th>RingNumber</th>
             </tr>
         </thead>
         <tbody>
@@ -26,10 +33,17 @@
                     <td>@product.Id</td>
                     <td>@product.FirstName</td>
                     <td>@product.LastName</td>
-                    <td>@product.AddressID</td>
                     <td>@product.Email</td>
                     <td>@product.Phone</td>
                     <td>@product.Sex</td>
+                    <td>@product.Address.PostCode</td>
+                    <td>@product.Address.Town</td>
+                    <td>@product.Address.Street</td>
+                    <td>@product.Address.StreetType</td>
+                    <td>@product.Address.HouseNumber</td>
+                    <td>@product.Address.Floor</td>
+                    <td>@product.Address.Door</td>
+                    <td>@product.Address.RingNumber</td>
                 </tr>
             }
         </tbody>

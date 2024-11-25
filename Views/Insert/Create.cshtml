@@ -4,28 +4,75 @@
 
 <form asp-action="Create" method="post">
     <div>
-        <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" />
+        <h3>Personal Details</h3>
+        <div>
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" />
+        </div>
+        <div>
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" />
+        </div>
+        <div>
+            <label asp-for="Email"></label>
+            <input asp-for="Email" />
+        </div>
+        <div>
+            <label asp-for="Phone"></label>
+            <input asp-for="Phone" />
+        </div>
+        <div>
+            <label asp-for="Sex"></label>
+            <select asp-for="Sex" asp-items="@(new SelectList(new[] { new { Value = "Male", Text = "Male" }, new { Value = "Female", Text = "Female" }, }, "Value", "Text"))"></select>
+        </div>
     </div>
+
     <div>
-        <label asp-for="LastName"></label>
-        <input asp-for="LastName" />
+        <h3>Address Details</h3>
+        <div>
+            <label asp-for="Address.PostCode"></label>
+            <input asp-for="Address.PostCode" />
+        </div>
+        <div>
+            <label asp-for="Address.Town"></label>
+            <input asp-for="Address.Town" />
+        </div>
+        <div>
+            <label asp-for="Address.Street"></label>
+            <input asp-for="Address.Street" />
+        </div>
+        <div>
+            <label asp-for="Address.StreetType"></label>
+            <label asp-for="Address.StreetType"></label>
+            <select asp-for="Address.StreetType" asp-items="@(new SelectList(new[] {
+                new { Value = "Park", Text = "Park" },
+                new { Value = "Drive", Text = "Drive" },
+                new { Value = "Road", Text = "Road" },
+                new { Value = "Lane", Text = "Lane" },
+                new { Value = "Boulevard", Text = "Boulevard" },
+                new { Value = "Avenue", Text = "Avenue" },
+                new { Value = "Street", Text = "Street" } },
+                "Value", "Text"))">
+            </select>
+
+        </div>
+        <div>
+            <label asp-for="Address.HouseNumber"></label>
+            <input asp-for="Address.HouseNumber" />
+        </div>
+        <div>
+            <label asp-for="Address.Floor"></label>
+            <input asp-for="Address.Floor" />
+        </div>
+        <div>
+            <label asp-for="Address.Door"></label>
+            <input asp-for="Address.Door" />
+        </div>
+        <div>
+            <label asp-for="Address.RingNumber"></label>
+            <input asp-for="Address.RingNumber" />
+        </div>
     </div>
-    <div>
-        <label asp-for="AddressID"></label>
-        <input asp-for="AddressID" />
-    </div>
-    <div>
-        <label asp-for="Email"></label>
-        <input asp-for="Email" />
-    </div>
-    <div>
-        <label asp-for="Phone"></label>
-        <input asp-for="Phone" />
-    </div>
-    <div>
-        <label asp-for="Sex"></label>
-        <select asp-for="Sex" asp-items="@(new SelectList(new[] { new { Value = 1, Text = "Male" }, new { Value = 2, Text = "Female" }, }, "Value", "Text"))"></select>
-    </div>
+
     <button type="submit">Submit</button>
 </form>

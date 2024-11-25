@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ekozigPersonEntryDemo.Models
 {
@@ -15,20 +16,49 @@ namespace ekozigPersonEntryDemo.Models
         public string LastName { get; set; }
 
         [Required]
-        public int AddressID { get; set; } // Assuming AddressID is a required foreign key.
+        [ForeignKey("AddressID")]
+        public Address Address { get; set; }
 
         [Required]
         [EmailAddress]
-        [StringLength(100)] // Assuming a maximum length for email.
+        [StringLength(100)]
         public string Email { get; set; }
 
-        [Required]
         [Phone]
-        [StringLength(20)] // Assuming a reasonable max length for phone numbers.
+        [StringLength(50)]
         public string Phone { get; set; }
 
         [Required]
-        [StringLength(10)] // Assuming a fixed max length for "Sex" (e.g., "Male", "Female").
+        [StringLength(10)]
         public string Sex { get; set; }
+    }
+
+    public class Address
+    {
+        public int AddressID { get; set; }
+
+        [Required]
+        [StringLength(4)]
+        public string PostCode { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Town { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Street { get; set; }
+
+        [StringLength(50)]
+        public string StreetType { get; set; }
+
+        [Required]
+        public int HouseNumber { get; set; }
+
+        public int? Floor { get; set; }
+
+        public int? Door { get; set; }
+
+        public int? RingNumber { get; set; }
     }
 }
