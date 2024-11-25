@@ -13,23 +13,41 @@
                 <th>ID</th>
                 <th>FirstName</th>
                 <th>LastName</th>
-                <th>AddressID</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Sex</th>
+                <th>PostCode</th>
+                <th>Town</th>
+                <th>Street</th>
+                <th>StreetType</th>
+                <th>HouseNumber</th>
+                <th>Floor</th>
+                <th>Door</th>
+                <th>RingNumber</th>
+                <th>Delete</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in Model)
+            @foreach (var entry in Model)
             {
                 <tr>
-                    <td>@product.Id</td>
-                    <td>@product.FirstName</td>
-                    <td>@product.LastName</td>
-                    <td>@product.AddressID</td>
-                    <td>@product.Email</td>
-                    <td>@product.Phone</td>
-                    <td>@product.Sex</td>
+                    <td>@entry.Id</td>
+                    <td>@entry.FirstName</td>
+                    <td>@entry.LastName</td>
+                    <td>@entry.Email</td>
+                    <td>@entry.Phone</td>
+                    <td>@entry.Sex</td>
+                    <td>@entry.Address.PostCode</td>
+                    <td>@entry.Address.Town</td>
+                    <td>@entry.Address.Street</td>
+                    <td>@entry.Address.StreetType</td>
+                    <td>@entry.Address.HouseNumber</td>
+                    <td>@entry.Address.Floor</td>
+                    <td>@entry.Address.Door</td>
+                    <td>@entry.Address.RingNumber</td>
+                    <td><button>Modify</button></td>
+                    <td><button>Delete</button></td>
                 </tr>
             }
         </tbody>

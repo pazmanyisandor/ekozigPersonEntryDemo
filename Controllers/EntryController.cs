@@ -17,12 +17,21 @@ namespace ekozigPersonEntryDemo.Controllers
         {
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
 
-            List<Entry> products = new List<Entry>();
+            List<Entry> entries = new List<Entry>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT Id, FirstName, LastName, AddressID, Email, Phone, Sex FROM entry";
+
+                // Updated query to join entry and address tables
+                string query = @"
+                    SELECT 
+                        e.Id, e.FirstName, e.LastName, e.Email, e.Phone, e.Sex,
+                        a.PostCode, a.Town, a.Street, a.StreetType, a.HouseNumber, a.Floor, a.Door, a.RingNumber
+                    FROM 
+                        entry e
+                    INNER JOIN 
+                        address a ON e.AddressID = a.AddressID";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -30,22 +39,32 @@ namespace ekozigPersonEntryDemo.Controllers
                     {
                         while (reader.Read())
                         {
-                            products.Add(new Entry
+                            entries.Add(new Entry
                             {
                                 Id = reader.GetInt32(0),
                                 FirstName = reader.GetString(1),
                                 LastName = reader.GetString(2),
-                                AddressID = reader.GetInt32(3),
-                                Email = reader.GetString(4),
-                                Phone = reader.GetString(5),
-                                Sex = reader.GetString(6)
+                                Email = reader.GetString(3),
+                                Phone = reader.GetString(4),
+                                Sex = reader.GetString(5),
+                                Address = new Address
+                                {
+                                    PostCode = reader.GetString(6),
+                                    Town = reader.GetString(7),
+                                    Street = reader.GetString(8),
+                                    StreetType = reader.GetString(9),
+                                    HouseNumber = reader.GetInt32(10),
+                                    Floor = reader.IsDBNull(11) ? (int?)null : reader.GetInt32(11),
+                                    Door = reader.IsDBNull(12) ? (int?)null : reader.GetInt32(12),
+                                    RingNumber = reader.IsDBNull(13)? (int?)null : reader.GetInt32(13)
+                                }
                             });
                         }
                     }
                 }
             }
 
-            return View(products);
+            return View(entries);
         }
     }
 }
