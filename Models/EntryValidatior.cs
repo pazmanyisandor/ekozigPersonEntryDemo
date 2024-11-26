@@ -6,6 +6,11 @@ namespace ekozigPersonEntryDemo.Models
 {
     public static class EntryValidator
     {
+        /// <summary>
+        /// Validates an Entry
+        /// </summary>
+        /// <param name="entry">: entry object</param>
+        /// <param name="modelState">: model state which will show error messages if one data type is bad</param>
         public static void ValidateEntry(Entry entry, ModelStateDictionary modelState)
         {
             // Personal Details Validation

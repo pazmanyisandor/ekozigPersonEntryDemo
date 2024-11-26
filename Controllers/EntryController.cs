@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 
 namespace ekozigPersonEntryDemo.Controllers
 {
+    /// <summary>
+    /// Controller part of the Entrz View
+    /// </summary>
     public class EntryController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -13,6 +16,10 @@ namespace ekozigPersonEntryDemo.Controllers
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Gathers the data to be listed in the Index page's table
+        /// </summary>
+        /// <returns>View object containing the gathered entries</returns>
         public IActionResult Index()
         {
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
@@ -69,6 +76,11 @@ namespace ekozigPersonEntryDemo.Controllers
             return View(entries);
         }
 
+        /// <summary>
+        /// Deletes an entry from the database with a specific id
+        /// </summary>
+        /// <param name="id">: ID specifying the entry to be deleted</param>
+        /// <returns>Redirects to the Index page</returns>
         public IActionResult Delete(int id)
         {
             string connectionString = _configuration.GetConnectionString("DefaultConnection");

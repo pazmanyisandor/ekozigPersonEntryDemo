@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 
 namespace ekozigPersonEntryDemo.Controllers
 {
+    /// <summary>
+    /// The controller of the entry creation and modification
+    /// </summary>
     public class InsertController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -13,14 +16,12 @@ namespace ekozigPersonEntryDemo.Controllers
             _configuration = configuration;
         }
 
-        // Display the form to create a new entry
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
 
-        // Handle form submission to insert a new entry with address
+        /// <summary>
+        /// Backend of entry creation or modification.
+        /// </summary>
+        /// <param name="entry">Data from the Create View to be passed to the DB. If the entry is already existing, it will try to update the DB, if not, it will create a new entry.</param>
+        /// <returns>Redirect action to the Index if the data is correct, or it will reload the form and show error messages.</returns>
         [HttpPost]
         public IActionResult Create(Entry entry)
         {
@@ -129,7 +130,10 @@ namespace ekozigPersonEntryDemo.Controllers
             return View(entry);
         }
 
-        // Display the form to edit an entry
+        /// <summary>
+        /// Gathers the entry data for an ID passed as Request from the DB, which will be modified.
+        /// </summary>
+        /// <returns>Redirection to the Create form, whith the data of the specified Entry</returns>
         [HttpGet]
         public IActionResult Edit()
         {
