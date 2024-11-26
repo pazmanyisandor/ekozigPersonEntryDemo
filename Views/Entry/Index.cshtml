@@ -39,72 +39,74 @@
         </div>
     }
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Keresztnév</th>
-                <th>Családnév</th>
-                <th>Email</th>
-                <th>Telefonszám</th>
-                <th>Nem</th>
-                <th>Irányítószám</th>
-                <th>Város</th>
-                <th>Közterület neve</th>
-                <th>Közterület jellege</th>
-                <th>Házszám</th>
-                <th>Emelet</th>
-                <th>Ajtó</th>
-                <th>Csengő</th>
-                <th>Módosítva</th>
-                <th>Létrehozva</th>
-                <th>Módosítás</th>
-                <th>Törlés</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var entry in Model)
-            {
+    <div class="table-container">
+        <table border="1">
+            <thead>
                 <tr>
-                    <td>@entry.Id</td>
-                    <td>@entry.FirstName</td>
-                    <td>@entry.LastName</td>
-                    <td>@entry.Email</td>
-                    <td>@entry.Phone</td>
-                    <td>
-                        @(sexTypeTranslations.ContainsKey(entry.Sex)
-                            ? sexTypeTranslations[entry.Sex]
-                            : entry.Sex)
-                    </td>
-                    <td>@entry.Address.PostCode</td>
-                    <td>@entry.Address.Town</td>
-                    <td>@entry.Address.Street</td>
-                    <td>
-                        @(streetTypeTranslations.ContainsKey(entry.Address.StreetType)
-                            ? streetTypeTranslations[entry.Address.StreetType]
-                            : entry.Address.StreetType)
-                    </td>
-                    <td>@entry.Address.HouseNumber</td>
-                    <td>@entry.Address.Floor</td>
-                    <td>@entry.Address.Door</td>
-                    <td>@entry.Address.RingNumber</td>
-                    <td>@entry.ModifiedAt</td>
-                    <td>@entry.CreatedAt</td>
-                    <td>
-                        <form asp-action="Edit" asp-controller="Insert" method="get" style="display:inline;">
-                            <input type="hidden" name="id" value="@entry.Id" />
-                            <button type="submit">Módosítás</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form asp-action="Delete" asp-controller="Entry" method="post" style="display:inline;">
-                            <input type="hidden" name="id" value="@entry.Id" />
-                            <button type="submit" onclick="return confirm('Biztos törlöd a kiválaszott rekordot?');">Törlés</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                    <th>Keresztnév</th>
+                    <th>Családnév</th>
+                    <th>Email</th>
+                    <th>Telefonszám</th>
+                    <th>Nem</th>
+                    <th>Irányítószám</th>
+                    <th>Város</th>
+                    <th>Közterület neve</th>
+                    <th>Közterület jellege</th>
+                    <th>Házszám</th>
+                    <th>Emelet</th>
+                    <th>Ajtó</th>
+                    <th>Csengő</th>
+                    <th>Módosítva</th>
+                    <th>Létrehozva</th>
+                    <th>Módosítás</th>
+                    <th>Törlés</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var entry in Model)
+                {
+                    <tr>
+                        <td>@entry.Id</td>
+                        <td>@entry.FirstName</td>
+                        <td>@entry.LastName</td>
+                        <td>@entry.Email</td>
+                        <td>@entry.Phone</td>
+                        <td>
+                            @(sexTypeTranslations.ContainsKey(entry.Sex)
+                                ? sexTypeTranslations[entry.Sex]
+                                : entry.Sex)
+                        </td>
+                        <td>@entry.Address.PostCode</td>
+                        <td>@entry.Address.Town</td>
+                        <td>@entry.Address.Street</td>
+                        <td>
+                            @(streetTypeTranslations.ContainsKey(entry.Address.StreetType)
+                                ? streetTypeTranslations[entry.Address.StreetType]
+                                : entry.Address.StreetType)
+                        </td>
+                        <td>@entry.Address.HouseNumber</td>
+                        <td>@entry.Address.Floor</td>
+                        <td>@entry.Address.Door</td>
+                        <td>@entry.Address.RingNumber</td>
+                        <td>@entry.ModifiedAt</td>
+                        <td>@entry.CreatedAt</td>
+                        <td>
+                            <form asp-action="Edit" asp-controller="Insert" method="get" style="display:inline;">
+                                <input type="hidden" name="id" value="@entry.Id" />
+                                <button type="submit">Módosítás</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="Delete" asp-controller="Entry" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@entry.Id" />
+                                <button type="submit" onclick="return confirm('Biztos törlöd a kiválaszott rekordot?');">Törlés</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
