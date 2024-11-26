@@ -16,6 +16,12 @@ namespace ekozigPersonEntryDemo.Controllers
             _configuration = configuration;
         }
 
+        // Display the form to create a new entry
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         /// <summary>
         /// Backend of entry creation or modification.
