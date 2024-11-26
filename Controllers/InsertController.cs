@@ -32,40 +32,82 @@ namespace ekozigPersonEntryDemo.Controllers
                 {
                     connection.Open();
 
-                    string addressQuery = @"
+                    //Insert
+                    if (entry.Id == 0)
+                    {
+                        string addressQuery = @"
                         INSERT INTO address (PostCode, Town, Street, StreetType, HouseNumber, Floor, Door, RingNumber) 
                         OUTPUT INSERTED.AddressID
                         VALUES (@PostCode, @Town, @Street, @StreetType, @HouseNumber, @Floor, @Door, @RingNumber)";
 
-                    int newAddressId;
+                        int newAddressId;
 
-                    using (SqlCommand addressCommand = new SqlCommand(addressQuery, connection))
-                    {
-                        addressCommand.Parameters.AddWithValue("@PostCode", entry.Address.PostCode);
-                        addressCommand.Parameters.AddWithValue("@Town", entry.Address.Town);
-                        addressCommand.Parameters.AddWithValue("@Street", entry.Address.Street);
-                        addressCommand.Parameters.AddWithValue("@StreetType", entry.Address.StreetType ?? (object)DBNull.Value);
-                        addressCommand.Parameters.AddWithValue("@HouseNumber", entry.Address.HouseNumber);
-                        addressCommand.Parameters.AddWithValue("@Floor", entry.Address.Floor ?? (object)DBNull.Value);
-                        addressCommand.Parameters.AddWithValue("@Door", entry.Address.Door ?? (object)DBNull.Value);
-                        addressCommand.Parameters.AddWithValue("@RingNumber", entry.Address.RingNumber ?? (object)DBNull.Value);
+                        using (SqlCommand addressCommand = new SqlCommand(addressQuery, connection))
+                        {
+                            addressCommand.Parameters.AddWithValue("@PostCode", entry.Address.PostCode);
+                            addressCommand.Parameters.AddWithValue("@Town", entry.Address.Town);
+                            addressCommand.Parameters.AddWithValue("@Street", entry.Address.Street);
+                            addressCommand.Parameters.AddWithValue("@StreetType", entry.Address.StreetType ?? (object)DBNull.Value);
+                            addressCommand.Parameters.AddWithValue("@HouseNumber", entry.Address.HouseNumber);
+                            addressCommand.Parameters.AddWithValue("@Floor", entry.Address.Floor ?? (object)DBNull.Value);
+                            addressCommand.Parameters.AddWithValue("@Door", entry.Address.Door ?? (object)DBNull.Value);
+                            addressCommand.Parameters.AddWithValue("@RingNumber", entry.Address.RingNumber ?? (object)DBNull.Value);
 
-                        newAddressId = (int)addressCommand.ExecuteScalar();
-                    }
+                            newAddressId = (int)addressCommand.ExecuteScalar();
+                        }
 
-                    string entryQuery = @"
+                        string entryQuery = @"
                         INSERT INTO entry (FirstName, LastName, AddressID, Email, Phone, Sex) 
                         VALUES (@FirstName, @LastName, @AddressID, @Email, @Phone, @Sex)";
 
-                    using (SqlCommand entryCommand = new SqlCommand(entryQuery, connection))
+                        using (SqlCommand entryCommand = new SqlCommand(entryQuery, connection))
+                        {
+                            entryCommand.Parameters.AddWithValue("@FirstName", entry.FirstName);
+                            entryCommand.Parameters.AddWithValue("@LastName", entry.LastName);
+                            entryCommand.Parameters.AddWithValue("@AddressID", newAddressId);
+                            entryCommand.Parameters.AddWithValue("@Email", entry.Email);
+                            entryCommand.Parameters.AddWithValue("@Phone", entry.Phone);
+                            entryCommand.Parameters.AddWithValue("@Sex", entry.Sex);
+                            entryCommand.ExecuteNonQuery();
+                        }
+                    }
+
+                    //Update
+                    else
                     {
-                        entryCommand.Parameters.AddWithValue("@FirstName", entry.FirstName);
-                        entryCommand.Parameters.AddWithValue("@LastName", entry.LastName);
-                        entryCommand.Parameters.AddWithValue("@AddressID", newAddressId);
-                        entryCommand.Parameters.AddWithValue("@Email", entry.Email);
-                        entryCommand.Parameters.AddWithValue("@Phone", entry.Phone);
-                        entryCommand.Parameters.AddWithValue("@Sex", entry.Sex);
-                        entryCommand.ExecuteNonQuery();
+                        string addressQuery = @"
+                        UPDATE address 
+                        SET PostCode = @PostCode, Town = @Town,Street = @Street,StreetType = @StreetType,HouseNumber = @HouseNumber,Floor = @Floor,Door = @Door,RingNumber= @RingNumber
+                        WHERE AddressID = (SELECT AddressID FROM entry WHERE id=@ID)";
+
+                        using (SqlCommand addressCommand = new SqlCommand(addressQuery, connection))
+                        {
+                            addressCommand.Parameters.AddWithValue("@PostCode", entry.Address.PostCode);
+                            addressCommand.Parameters.AddWithValue("@Town", entry.Address.Town);
+                            addressCommand.Parameters.AddWithValue("@Street", entry.Address.Street);
+                            addressCommand.Parameters.AddWithValue("@StreetType", entry.Address.StreetType ?? (object)DBNull.Value);
+                            addressCommand.Parameters.AddWithValue("@HouseNumber", entry.Address.HouseNumber);
+                            addressCommand.Parameters.AddWithValue("@Floor", entry.Address.Floor ?? (object)DBNull.Value);
+                            addressCommand.Parameters.AddWithValue("@Door", entry.Address.Door ?? (object)DBNull.Value);
+                            addressCommand.Parameters.AddWithValue("@RingNumber", entry.Address.RingNumber ?? (object)DBNull.Value);
+                            addressCommand.Parameters.AddWithValue("@ID", entry.Id);
+                        }
+
+                        string entryQuery = @"
+                        UPDATE entry 
+                        SET FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, Sex = @Sex
+                        WHERE ID=@ID";
+
+                        using (SqlCommand entryCommand = new SqlCommand(entryQuery, connection))
+                        {
+                            entryCommand.Parameters.AddWithValue("@FirstName", entry.FirstName);
+                            entryCommand.Parameters.AddWithValue("@LastName", entry.LastName);
+                            entryCommand.Parameters.AddWithValue("@Email", entry.Email);
+                            entryCommand.Parameters.AddWithValue("@Phone", entry.Phone);
+                            entryCommand.Parameters.AddWithValue("@Sex", entry.Sex);
+                            entryCommand.Parameters.AddWithValue("@ID", entry.Id);
+                            entryCommand.ExecuteNonQuery();
+                        }
                     }
                 }
 
