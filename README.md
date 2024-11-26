@@ -22,6 +22,7 @@
 
 ## Felhasznált fő anyagok
 - https://www.youtube.com/watch?v=T-e554Zt3n4&t=1267s
+	- Ezen keresztül éreztem rá arra, hogy melyik komponens mit-hol csinál és alakítottam át az emlékeim szerint kért MVC modellre
 - különböző neten keresett kódok
 - ChatGPT
 	- Tanulányaim és ezen projekt során is bevallottan aktívan használom
