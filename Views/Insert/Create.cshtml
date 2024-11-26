@@ -5,94 +5,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create New Entry</title>
+    <title>Új rekord felvétele</title>
     <link rel="stylesheet" href="~/css/form-style.css" />
 </head>
 <body>
-    <h2 class="form-title">Create New Entry</h2>
+    <h2 class="form-title">Új rekord felvétele</h2>
 
     <form asp-action="Create" method="post" class="entry-form">
         <div class="form-section">
-            <h3>Personal Details</h3>
+            <h3>Személy adatai</h3>
             <div class="form-group">
-                <label asp-for="FirstName"></label>
+                <label asp-for="FirstName">Keresztnév</label>
                 <input asp-for="FirstName" aria-describedby="FirstName-error" />
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="LastName"></label>
+                <label asp-for="LastName">Családnév</label>
                 <input asp-for="LastName" aria-describedby="LastName-error" />
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="Email"></label>
+                <label asp-for="Email">Email</label>
                 <input asp-for="Email" aria-describedby="Email-error" />
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="Phone"></label>
-                <input asp-for="Phone" aria-describedby="Phone-error" />
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                <label asp-for="Phone">Telefonszám</label>
+                <input asp-for="Phone"/>
             </div>
             <div class="form-group">
-                <label asp-for="Sex"></label>
+                <label asp-for="Sex">Nem</label>
                 <select asp-for="Sex" asp-items="@(new SelectList(new[] {
-                    new { Value = "Male", Text = "Male" },
-                    new { Value = "Female", Text = "Female" }
+                    new { Value = "Male", Text = "Férfi" },
+                    new { Value = "Female", Text = "Nő" }
                 }, "Value", "Text"))">
                 </select>
             </div>
         </div>
 
         <div class="form-section">
-            <h3>Address Details</h3>
+            <h3>Lakcím adatai</h3>
             <div class="form-group">
-                <label asp-for="Address.PostCode"></label>
+                <label asp-for="Address.PostCode">Irányítószám</label>
                 <input asp-for="Address.PostCode" aria-describedby="PostCode-error" />
                 @Html.ValidationMessageFor(model => model.Address.PostCode, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="Address.Town"></label>
+                <label asp-for="Address.Town">Város</label>
                 <input asp-for="Address.Town" aria-describedby="Town-error" />
                 @Html.ValidationMessageFor(model => model.Address.Town, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="Address.Street"></label>
+                <label asp-for="Address.Street">Közterület neve</label>
                 <input asp-for="Address.Street" aria-describedby="Street-error" />
                 @Html.ValidationMessageFor(model => model.Address.Street, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="Address.StreetType"></label>
+                <label asp-for="Address.StreetType">Közterület jellege</label>
                 <select asp-for="Address.StreetType" asp-items="@(new SelectList(new[] {
-                    new { Value = "Park", Text = "Park" },
-                    new { Value = "Drive", Text = "Drive" },
-                    new { Value = "Road", Text = "Road" },
-                    new { Value = "Lane", Text = "Lane" },
-                    new { Value = "Boulevard", Text = "Boulevard" },
-                    new { Value = "Avenue", Text = "Avenue" },
-                    new { Value = "Street", Text = "Street" } },
-                    "Value", "Text"))">
+                   new { Value = "Park", Text = "Tér" },
+                   new { Value = "Drive", Text = "Út" },
+                   new { Value = "Road", Text = "Közút" },
+                   new { Value = "Lane", Text = "Sáv" },
+                   new { Value = "Boulevard", Text = "Sugárút" },
+                   new { Value = "Avenue", Text = "Sor" },
+                   new { Value = "Street", Text = "Utca" } },
+                   "Value", "Text"))">
                 </select>
             </div>
             <div class="form-group">
-                <label asp-for="Address.HouseNumber"></label>
+                <label asp-for="Address.HouseNumber">Házszám</label>
                 <input asp-for="Address.HouseNumber" aria-describedby="HouseNumber-error" />
                 @Html.ValidationMessageFor(model => model.Address.HouseNumber, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
-                <label asp-for="Address.Floor"></label>
-                <input asp-for="Address.Floor" aria-describedby="Floor-error" />
-                @Html.ValidationMessageFor(model => model.Address.Floor, "", new { @class = "text-danger" })
+                <label asp-for="Address.Floor">Emelet</label>
+                <input asp-for="Address.Floor"/>
             </div>
             <div class="form-group">
-                <label asp-for="Address.Door"></label>
-                <input asp-for="Address.Door" aria-describedby="Door-error" />
-                @Html.ValidationMessageFor(model => model.Address.Door, "", new { @class = "text-danger" })
+                <label asp-for="Address.Door">Ajtó</label>
+                <input asp-for="Address.Door"/>
             </div>
             <div class="form-group">
-                <label asp-for="Address.RingNumber"></label>
-                <input asp-for="Address.RingNumber" aria-describedby="RingNumber-error" />
-                @Html.ValidationMessageFor(model => model.Address.RingNumber, "", new { @class = "text-danger" })
+                <label asp-for="Address.RingNumber">Csengő</label>
+                <input asp-for="Address.RingNumber"/>
             </div>
         </div>
 

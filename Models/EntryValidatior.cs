@@ -10,39 +10,39 @@ namespace ekozigPersonEntryDemo.Models
         {
             // Personal Details Validation
             if (string.IsNullOrWhiteSpace(entry.FirstName))
-                modelState.AddModelError("FirstName", "First Name is required.");
+                modelState.AddModelError("FirstName", "A keresztnév megadása kötelező.");
 
             if (string.IsNullOrWhiteSpace(entry.LastName))
-                modelState.AddModelError("LastName", "Last Name is required.");
+                modelState.AddModelError("LastName", "A vezetéknév megadása kötelező.");
 
             if (string.IsNullOrWhiteSpace(entry.Email))
-                modelState.AddModelError("Email", "Email is required.");
+                modelState.AddModelError("Email", "Az email megadása kötelező.");
             else if (!entry.Email.Contains("@") || !entry.Email.Contains(".") || entry.Email.IndexOf("@") > entry.Email.LastIndexOf("."))
-                modelState.AddModelError("Email", "Invalid email format.");
-
-            if (string.IsNullOrWhiteSpace(entry.Phone))
-                modelState.AddModelError("Phone", "Phone number is required.");
+                modelState.AddModelError("Email", "Az email formátuma rossz.");
 
             // Address Validation
             if (entry.Address == null)
             {
-                modelState.AddModelError("Address", "Address is required.");
+                modelState.AddModelError("Address", "A cím megadása kötelező.");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(entry.Address.PostCode))
-                modelState.AddModelError("Address.PostCode", "Post Code is required.");
+                modelState.AddModelError("Address.PostCode", "Az irányítószám megadása kötelező.");
             else if (entry.Address.PostCode.Length != 4)
-                modelState.AddModelError("Address.PostCode", "Post Code must be exactly 4 characters.");
+                modelState.AddModelError("Address.PostCode", "Az irányítószámnak pontosan 4 karakterúnek kell lennie.");
 
             if (string.IsNullOrWhiteSpace(entry.Address.Town))
-                modelState.AddModelError("Address.Town", "Town is required.");
+                modelState.AddModelError("Address.Town", "A település megadása kötelező.");
 
             if (string.IsNullOrWhiteSpace(entry.Address.Street))
-                modelState.AddModelError("Address.Street", "Street is required.");
+                modelState.AddModelError("Address.Street", "Az utca megadása kötelező.");
+
+            if (string.IsNullOrWhiteSpace(entry.Address.HouseNumber.ToString()))
+                modelState.AddModelError("Address.HouseNumber", "Az házszám megadása kötelező.");
 
             if (entry.Address.HouseNumber <= 0)
-                modelState.AddModelError("Address.HouseNumber", "House Number must be greater than 0.");
+                modelState.AddModelError("Address.HouseNumber", "A házszámnak nagyobbnak kell lennie, mint nulla.");
         }
     }
 
