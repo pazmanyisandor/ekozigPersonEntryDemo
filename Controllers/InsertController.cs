@@ -74,5 +74,67 @@ namespace ekozigPersonEntryDemo.Controllers
 
             return View(entry);
         }
+
+        // Display the form to edit an entry
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            Entry entry = new Entry();
+
+            if (ModelState.IsValid)
+            {
+                string id = Request.Query["ID"];
+                string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = @"
+                        SELECT 
+                            e.Id, e.FirstName, e.LastName, e.Email, e.Phone, e.Sex,
+                            a.PostCode, a.Town, a.Street, a.StreetType, a.HouseNumber, a.Floor, a.Door, a.RingNumber
+                        FROM 
+                            entry e
+                        INNER JOIN 
+                            address a ON e.AddressID = a.AddressID
+                        WHERE
+                            e.id = @id";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                entry = new Entry
+                                {
+                                    Id = reader.GetInt32(0),
+                                    FirstName = reader.GetString(1),
+                                    LastName = reader.GetString(2),
+                                    Email = reader.GetString(3),
+                                    Phone = reader.GetString(4),
+                                    Sex = reader.GetString(5),
+                                    Address = new Address
+                                    {
+                                        PostCode = reader.GetString(6),
+                                        Town = reader.GetString(7),
+                                        Street = reader.GetString(8),
+                                        StreetType = reader.GetString(9),
+                                        HouseNumber = reader.GetInt32(10),
+                                        Floor = reader.IsDBNull(11) ? (int?)null : reader.GetInt32(11),
+                                        Door = reader.IsDBNull(12) ? (int?)null : reader.GetInt32(12),
+                                        RingNumber = reader.IsDBNull(13) ? (int?)null : reader.GetInt32(13)
+                                    }
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+
+            return View("Create", entry);
+        }
     }
 }
