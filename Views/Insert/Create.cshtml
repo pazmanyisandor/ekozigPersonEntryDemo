@@ -1,84 +1,87 @@
 ﻿@model ekozigPersonEntryDemo.Models.Entry
 
-<h2>Create New Entry</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Entry</title>
+    <link rel="stylesheet" href="~/css/form-style.css" />
+</head>
+<body>
+    <h2 class="form-title">Create New Entry</h2>
 
-<form asp-action="Create" method="post">
-    <div>
-        <h3>Personal Details</h3>
-        <div>
-            <label asp-for="FirstName"></label>
-            <input asp-for="FirstName" />
+    <form asp-action="Create" method="post" class="entry-form">
+        <div class="form-section">
+            <h3>Personal Details</h3>
+            <div class="form-group">
+                <label asp-for="FirstName"></label>
+                <input asp-for="FirstName" />
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName"></label>
+                <input asp-for="LastName" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Sex"></label>
+                <select asp-for="Sex" asp-items="@(new SelectList(new[] { new { Value = "Male", Text = "Male" }, new { Value = "Female", Text = "Female" }, }, "Value", "Text"))"></select>
+            </div>
         </div>
-        <div>
-            <label asp-for="LastName"></label>
-            <input asp-for="LastName" />
-        </div>
-        <div>
-            <label asp-for="Email"></label>
-            <input asp-for="Email" />
-        </div>
-        <div>
-            <label asp-for="Phone"></label>
-            <input asp-for="Phone" />
-        </div>
-        <div>
-            <label asp-for="Sex"></label>
-            <select asp-for="Sex" asp-items="@(new SelectList(new[] { new { Value = "Male", Text = "Male" }, new { Value = "Female", Text = "Female" }, }, "Value", "Text"))"></select>
-        </div>
-    </div>
 
-    <div>
-        <h3>Address Details</h3>
-        <div>
-            <label asp-for="Address.PostCode"></label>
-            <input asp-for="Address.PostCode" />
+        <div class="form-section">
+            <h3>Address Details</h3>
+            <div class="form-group">
+                <label asp-for="Address.PostCode"></label>
+                <input asp-for="Address.PostCode" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.Town"></label>
+                <input asp-for="Address.Town" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.Street"></label>
+                <input asp-for="Address.Street" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.StreetType"></label>
+                <select asp-for="Address.StreetType" asp-items="@(new SelectList(new[] {
+                    new { Value = "Park", Text = "Park" },
+                    new { Value = "Drive", Text = "Drive" },
+                    new { Value = "Road", Text = "Road" },
+                    new { Value = "Lane", Text = "Lane" },
+                    new { Value = "Boulevard", Text = "Boulevard" },
+                    new { Value = "Avenue", Text = "Avenue" },
+                    new { Value = "Street", Text = "Street" } },
+                    "Value", "Text"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.HouseNumber"></label>
+                <input asp-for="Address.HouseNumber" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.Floor"></label>
+                <input asp-for="Address.Floor" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.Door"></label>
+                <input asp-for="Address.Door" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Address.RingNumber"></label>
+                <input asp-for="Address.RingNumber" />
+            </div>
         </div>
-        <div>
-            <label asp-for="Address.Town"></label>
-            <input asp-for="Address.Town" />
-        </div>
-        <div>
-            <label asp-for="Address.Street"></label>
-            <input asp-for="Address.Street" />
-        </div>
-        <div>
-            <label asp-for="Address.StreetType"></label>
-            <label asp-for="Address.StreetType"></label>
-            <select asp-for="Address.StreetType" asp-items="@(new SelectList(new[] {
-                new { Value = "Park", Text = "Park" },
-                new { Value = "Drive", Text = "Drive" },
-                new { Value = "Road", Text = "Road" },
-                new { Value = "Lane", Text = "Lane" },
-                new { Value = "Boulevard", Text = "Boulevard" },
-                new { Value = "Avenue", Text = "Avenue" },
-                new { Value = "Street", Text = "Street" } },
-                "Value", "Text"))">
-            </select>
 
-        </div>
-        <div>
-            <label asp-for="Address.HouseNumber"></label>
-            <input asp-for="Address.HouseNumber" />
-        </div>
-        <div>
-            <label asp-for="Address.Floor"></label>
-            <input asp-for="Address.Floor" />
-        </div>
-        <div>
-            <label asp-for="Address.Door"></label>
-            <input asp-for="Address.Door" />
-        </div>
-        <div>
-            <label asp-for="Address.RingNumber"></label>
-            <input asp-for="Address.RingNumber" />
-        </div>
-    </div>
-
-    <form asp-action="Create" asp-controller="Insert" method="post" style="display:inline;">
-        @if (Model != null)
-        {
-            <input type="hidden" name="id" value="@Model.Id" />
-        }
-        <button type="submit">Submit</button>
+        <button type="submit" class="submit-button">Submit</button>
     </form>
-</form>
+</body>
+</html>

@@ -1,0 +1,104 @@
+﻿/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Page title */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
+/* Table styling */
+table {
+    width: 95%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Button styles */
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button[onclick] {
+    background-color: #dc3545;
+    color: white;
+}
+
+button[onclick]:hover {
+    background-color: #c82333;
+}
+
+/* Form styles inside the table */
+form {
+    display: inline;
+}
+
+/* Table container */
+table {
+    border-radius: 8px;
+    overflow: hidden;
+    border-spacing: 0;
+}
+
+thead {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+tbody {
+    font-size: 14px;
+    color: #555;
+}
