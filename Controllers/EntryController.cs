@@ -45,7 +45,7 @@ namespace ekozigPersonEntryDemo.Controllers
                                 FirstName = reader.GetString(1),
                                 LastName = reader.GetString(2),
                                 Email = reader.GetString(3),
-                                Phone = reader.GetString(4),
+                                Phone = reader.IsDBNull(4) ? (string?)null : reader.GetString(4),
                                 Sex = reader.GetString(5),
                                 Address = new Address
                                 {

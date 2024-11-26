@@ -26,7 +26,7 @@ namespace ekozigPersonEntryDemo.Models
 
         [Phone]
         [StringLength(50)]
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
         [Required]
         [StringLength(10)]

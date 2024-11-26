@@ -75,7 +75,7 @@ namespace ekozigPersonEntryDemo.Controllers
                             entryCommand.Parameters.AddWithValue("@LastName", entry.LastName);
                             entryCommand.Parameters.AddWithValue("@AddressID", newAddressId);
                             entryCommand.Parameters.AddWithValue("@Email", entry.Email);
-                            entryCommand.Parameters.AddWithValue("@Phone", entry.Phone);
+                            entryCommand.Parameters.AddWithValue("@Phone", entry.Phone ?? (object)DBNull.Value);
                             entryCommand.Parameters.AddWithValue("@Sex", entry.Sex);
                             entryCommand.ExecuteNonQuery();
                         }
@@ -113,7 +113,7 @@ namespace ekozigPersonEntryDemo.Controllers
                             entryCommand.Parameters.AddWithValue("@FirstName", entry.FirstName);
                             entryCommand.Parameters.AddWithValue("@LastName", entry.LastName);
                             entryCommand.Parameters.AddWithValue("@Email", entry.Email);
-                            entryCommand.Parameters.AddWithValue("@Phone", entry.Phone);
+                            entryCommand.Parameters.AddWithValue("@Phone", entry.Phone ?? (object)DBNull.Value);
                             entryCommand.Parameters.AddWithValue("@Sex", entry.Sex);
                             entryCommand.Parameters.AddWithValue("@ID", entry.Id);
                             entryCommand.ExecuteNonQuery();
@@ -166,7 +166,7 @@ namespace ekozigPersonEntryDemo.Controllers
                                     FirstName = reader.GetString(1),
                                     LastName = reader.GetString(2),
                                     Email = reader.GetString(3),
-                                    Phone = reader.GetString(4),
+                                    Phone = reader.IsDBNull(4) ? (string?)null : reader.GetString(4),
                                     Sex = reader.GetString(5),
                                     Address = new Address
                                     {
