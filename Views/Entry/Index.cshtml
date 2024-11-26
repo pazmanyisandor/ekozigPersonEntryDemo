@@ -1,5 +1,26 @@
 ﻿@model IEnumerable<ekozigPersonEntryDemo.Models.Entry>
 
+@{
+    var streetTypeTranslations = new Dictionary<string, string>
+    {
+        { "Park", "Tér" },
+        { "Drive", "Út" },
+        { "Road", "Közút" },
+        { "Lane", "Sáv" },
+        { "Boulevard", "Sugárút" },
+        { "Avenue", "Sor" },
+        { "Street", "Utca" }
+    };
+}
+
+@{
+    var sexTypeTranslations = new Dictionary<string, string>
+    {
+        { "Male", "Férfi" },
+        { "Female", "Nő" }
+    };
+}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,11 +71,19 @@
                     <td>@entry.LastName</td>
                     <td>@entry.Email</td>
                     <td>@entry.Phone</td>
-                    <td>@entry.Sex</td>
+                    <td>
+                        @(sexTypeTranslations.ContainsKey(entry.Sex)
+                            ? sexTypeTranslations[entry.Sex]
+                            : entry.Sex)
+                    </td>
                     <td>@entry.Address.PostCode</td>
                     <td>@entry.Address.Town</td>
                     <td>@entry.Address.Street</td>
-                    <td>@entry.Address.StreetType</td>
+                    <td>
+                        @(streetTypeTranslations.ContainsKey(entry.Address.StreetType)
+                            ? streetTypeTranslations[entry.Address.StreetType]
+                            : entry.Address.StreetType)
+                    </td>
                     <td>@entry.Address.HouseNumber</td>
                     <td>@entry.Address.Floor</td>
                     <td>@entry.Address.Door</td>
