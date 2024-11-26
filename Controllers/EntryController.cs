@@ -27,7 +27,7 @@ namespace ekozigPersonEntryDemo.Controllers
                 string query = @"
                     SELECT 
                         e.Id, e.FirstName, e.LastName, e.Email, e.Phone, e.Sex,
-                        a.PostCode, a.Town, a.Street, a.StreetType, a.HouseNumber, a.Floor, a.Door, a.RingNumber
+                        a.PostCode, a.Town, a.Street, a.StreetType, a.HouseNumber, a.Floor, a.Door, a.RingNumber, e.Modified_at, e.Created_at
                     FROM 
                         entry e
                     INNER JOIN 
@@ -57,7 +57,9 @@ namespace ekozigPersonEntryDemo.Controllers
                                     Floor = reader.IsDBNull(11) ? (int?)null : reader.GetInt32(11),
                                     Door = reader.IsDBNull(12) ? (int?)null : reader.GetInt32(12),
                                     RingNumber = reader.IsDBNull(13)? (int?)null : reader.GetInt32(13)
-                                }
+                                },
+                                ModifiedAt = reader.GetDateTime(14),
+                                CreatedAt = reader.GetDateTime(15)
                             });
                         }
                     }

@@ -86,7 +86,7 @@ namespace ekozigPersonEntryDemo.Controllers
                     {
                         string addressQuery = @"
                         UPDATE address 
-                        SET PostCode = @PostCode, Town = @Town,Street = @Street,StreetType = @StreetType,HouseNumber = @HouseNumber,Floor = @Floor,Door = @Door,RingNumber= @RingNumber
+                        SET PostCode = @PostCode, Town = @Town, Street = @Street, StreetType = @StreetType, HouseNumber = @HouseNumber, Floor = @Floor, Door = @Door, RingNumber = @RingNumber, Modified_at = @Modified_at
                         WHERE AddressID = (SELECT AddressID FROM entry WHERE id=@ID)";
 
                         using (SqlCommand addressCommand = new SqlCommand(addressQuery, connection))
@@ -99,13 +99,14 @@ namespace ekozigPersonEntryDemo.Controllers
                             addressCommand.Parameters.AddWithValue("@Floor", entry.Address.Floor ?? (object)DBNull.Value);
                             addressCommand.Parameters.AddWithValue("@Door", entry.Address.Door ?? (object)DBNull.Value);
                             addressCommand.Parameters.AddWithValue("@RingNumber", entry.Address.RingNumber ?? (object)DBNull.Value);
+                            addressCommand.Parameters.AddWithValue("@Modified_at", DateTime.Now);
                             addressCommand.Parameters.AddWithValue("@ID", entry.Id);
                             addressCommand.ExecuteNonQuery();
                         }
 
                         string entryQuery = @"
                         UPDATE entry 
-                        SET FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, Sex = @Sex
+                        SET FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, Sex = @Sex, Modified_at = @Modified_at
                         WHERE ID=@ID";
 
                         using (SqlCommand entryCommand = new SqlCommand(entryQuery, connection))
@@ -115,6 +116,7 @@ namespace ekozigPersonEntryDemo.Controllers
                             entryCommand.Parameters.AddWithValue("@Email", entry.Email);
                             entryCommand.Parameters.AddWithValue("@Phone", entry.Phone ?? (object)DBNull.Value);
                             entryCommand.Parameters.AddWithValue("@Sex", entry.Sex);
+                            entryCommand.Parameters.AddWithValue("@Modified_at", DateTime.Now);
                             entryCommand.Parameters.AddWithValue("@ID", entry.Id);
                             entryCommand.ExecuteNonQuery();
                         }

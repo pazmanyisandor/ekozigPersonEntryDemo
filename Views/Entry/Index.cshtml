@@ -27,6 +27,8 @@
                 <th>Emelet</th>
                 <th>Ajtó</th>
                 <th>Csengő</th>
+                <th>Módosítva</th>
+                <th>Létrehozva</th>
                 <th>Módosítás</th>
                 <th>Törlés</th>
             </tr>
@@ -49,6 +51,8 @@
                     <td>@entry.Address.Floor</td>
                     <td>@entry.Address.Door</td>
                     <td>@entry.Address.RingNumber</td>
+                    <td>@entry.ModifiedAt</td>
+                    <td>@entry.CreatedAt</td>
                     <td>
                         <form asp-action="Edit" asp-controller="Insert" method="get" style="display:inline;">
                             <input type="hidden" name="id" value="@entry.Id" />

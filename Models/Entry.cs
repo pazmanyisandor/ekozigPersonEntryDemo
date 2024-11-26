@@ -31,6 +31,12 @@ namespace ekozigPersonEntryDemo.Models
         [Required]
         [StringLength(10)]
         public string Sex { get; set; }
+
+        [Required]
+        public DateTime CreatedAt { get; set; }
+
+        [Required]
+        public DateTime ModifiedAt { get; set; }
     }
 
     public class Address
