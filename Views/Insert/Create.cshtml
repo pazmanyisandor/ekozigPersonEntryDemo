@@ -11,6 +11,13 @@
 <body>
     <h2 class="form-title">Új rekord felvétel/módosítás</h2>
 
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div style="color: red; font-weight: bold; margin-bottom: 20px;">
+            Hiba történt: @ViewBag.ErrorMessage
+        </div>
+    }
+
     <form asp-action="Create" method="post" class="entry-form">
         <div class="form-section">
             <h3>Személy adatai</h3>

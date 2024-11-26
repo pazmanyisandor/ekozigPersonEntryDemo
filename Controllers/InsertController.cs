@@ -44,6 +44,7 @@ namespace ekozigPersonEntryDemo.Controllers
             {
                 string connectionString = _configuration.GetConnectionString("DefaultConnection");
 
+                try { 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -128,6 +129,12 @@ namespace ekozigPersonEntryDemo.Controllers
                             entryCommand.ExecuteNonQuery();
                         }
                     }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = ex.Message;
                 }
 
                 return RedirectToAction("Index", "Entry");
@@ -150,6 +157,7 @@ namespace ekozigPersonEntryDemo.Controllers
                 string id = Request.Query["ID"];
                 string connectionString = _configuration.GetConnectionString("DefaultConnection");
 
+                try { 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     string query = @"
@@ -195,6 +203,12 @@ namespace ekozigPersonEntryDemo.Controllers
                             }
                         }
                     }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    ViewBag.ErrorMessage = ex.Message;
                 }
             }
 
