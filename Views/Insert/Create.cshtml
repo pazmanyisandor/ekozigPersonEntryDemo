@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Új rekord felvétele</title>
+    <title>Új rekord felvétel/módosítás</title>
     <link rel="stylesheet" href="~/css/form-style.css" />
 </head>
 <body>
-    <h2 class="form-title">Új rekord felvétele</h2>
+    <h2 class="form-title">Új rekord felvétel/módosítás</h2>
 
     <form asp-action="Create" method="post" class="entry-form">
         <div class="form-section">
@@ -97,7 +97,7 @@
             {
                 <input type="hidden" name="id" value="@Model.Id" />
             }
-            <button type="submit" class="submit-button">Submit</button>
+            <button type="submit" class="submit-button">Küldés</button>
         </form>
     </form>
 </body>
