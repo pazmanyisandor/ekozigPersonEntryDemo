@@ -24,6 +24,24 @@ namespace ekozigPersonEntryDemo.Controllers
         [HttpPost]
         public IActionResult Create(Entry entry)
         {
+            // Data validation
+            if (string.IsNullOrWhiteSpace(entry.FirstName) ||
+                string.IsNullOrWhiteSpace(entry.LastName) ||
+                string.IsNullOrWhiteSpace(entry.Email) ||
+                string.IsNullOrWhiteSpace(entry.Phone) ||
+                entry.Address == null ||
+                string.IsNullOrWhiteSpace(entry.Address.PostCode) ||
+                entry.Address.PostCode.Length != 4 ||
+                string.IsNullOrWhiteSpace(entry.Address.Town) ||
+                string.IsNullOrWhiteSpace(entry.Address.Street) ||
+                entry.Address.HouseNumber <= 0 ||
+                !entry.Email.Contains("@") ||
+                !entry.Email.Contains(".") ||
+                entry.Email.IndexOf("@") > entry.Email.LastIndexOf(".")) 
+            {
+                return View(entry);
+            }
+
             if (ModelState.IsValid)
             {
                 string connectionString = _configuration.GetConnectionString("DefaultConnection");

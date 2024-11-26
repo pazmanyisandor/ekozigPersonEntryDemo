@@ -81,7 +81,13 @@
             </div>
         </div>
 
-        <button type="submit" class="submit-button">Submit</button>
+        <form asp-action="Create" asp-controller="Insert" method="post" style="display:inline;">
+            @if (Model != null)
+            {
+                <input type="hidden" name="id" value="@Model.Id" />
+            }
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
     </form>
 </body>
 </html>
