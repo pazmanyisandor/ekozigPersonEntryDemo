@@ -17,9 +17,10 @@
 ## Ismert gyengeségek
 - A megjelenés, képernyőméret függően való alkalmazkodás front-end oldalon nem létező fogalom, ennek okai tudáshiány CSS/front-end oldalon
 
-## Komponensek leírása
+## Telepítés és komponensek leírása
 - A "Database_Export" mappában megtalálható az adatbázis sémája
 - A "appsettings.json" fájlban tárolt az adatbázis belépéshez használt jelszó, a DB-ből exportált connectionString-ként
+- Klónozás után az alábbi paranccsal telepíthetjük az SqlClient dependency-t, ami elengedhetetlen a működéshez: "dotnet add package System.Data.SqlClient --version 4.9.0"
 
 ## Felhasznált fő anyagok
 - https://www.youtube.com/watch?v=T-e554Zt3n4&t=1267s
