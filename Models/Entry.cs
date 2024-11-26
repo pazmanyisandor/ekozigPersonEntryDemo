@@ -7,35 +7,35 @@ namespace ekozigPersonEntryDemo.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "A keresztnév megadása kötelező.")]
+        [StringLength(50, ErrorMessage = "A keresztnév maximum 50 karakter lehet.")]
         public string FirstName { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "A vezetéknév megadása kötelező.")]
+        [StringLength(50, ErrorMessage = "A vezetéknév maximum 50 karakter lehet.")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "A cím megadása kötelező.")]
         [ForeignKey("AddressID")]
         public Address Address { get; set; }
 
-        [Required]
-        [EmailAddress]
-        [StringLength(100)]
+        [Required(ErrorMessage = "Az email megadása kötelező.")]
+        [EmailAddress(ErrorMessage = "Az email formátuma helytelen.")]
+        [StringLength(100, ErrorMessage = "Az email maximum 100 karakter lehet.")]
         public string Email { get; set; }
 
-        [Phone]
-        [StringLength(50)]
+        [Phone(ErrorMessage = "A telefonszám formátuma helytelen.")]
+        [StringLength(50, ErrorMessage = "A telefonszám maximum 50 karakter lehet.")]
         public string? Phone { get; set; }
 
-        [Required]
-        [StringLength(10)]
+        [Required(ErrorMessage = "A nem megadása kötelező.")]
+        [StringLength(10, ErrorMessage = "A nem maximum 10 karakter lehet.")]
         public string Sex { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "A létrehozás dátuma megadása kötelező.")]
         public DateTime CreatedAt { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "A módosítás dátuma megadása kötelező.")]
         public DateTime ModifiedAt { get; set; }
     }
 
@@ -43,22 +43,22 @@ namespace ekozigPersonEntryDemo.Models
     {
         public int AddressID { get; set; }
 
-        [Required]
-        [StringLength(4)]
+        [Required(ErrorMessage = "Az irányítószám megadása kötelező.")]
+        [StringLength(4, ErrorMessage = "Az irányítószám pontosan 4 karakter legyen.")]
         public string PostCode { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = "A település megadása kötelező.")]
+        [StringLength(100, ErrorMessage = "A település neve maximum 100 karakter lehet.")]
         public string Town { get; set; }
 
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = "Az utca megadása kötelező.")]
+        [StringLength(100, ErrorMessage = "Az utca neve maximum 100 karakter lehet.")]
         public string Street { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "A közterület jellege maximum 50 karakter lehet.")]
         public string StreetType { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "A házszám megadása kötelező.")]
         public int HouseNumber { get; set; }
 
         public int? Floor { get; set; }
