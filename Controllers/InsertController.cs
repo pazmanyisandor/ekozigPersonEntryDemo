@@ -100,6 +100,7 @@ namespace ekozigPersonEntryDemo.Controllers
                             addressCommand.Parameters.AddWithValue("@Door", entry.Address.Door ?? (object)DBNull.Value);
                             addressCommand.Parameters.AddWithValue("@RingNumber", entry.Address.RingNumber ?? (object)DBNull.Value);
                             addressCommand.Parameters.AddWithValue("@ID", entry.Id);
+                            addressCommand.ExecuteNonQuery();
                         }
 
                         string entryQuery = @"
