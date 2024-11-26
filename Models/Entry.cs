@@ -59,7 +59,7 @@ namespace ekozigPersonEntryDemo.Models
         public string StreetType { get; set; }
 
         [Required(ErrorMessage = "A házszám megadása kötelező.")]
-        public int HouseNumber { get; set; }
+        public int? HouseNumber { get; set; }
 
         public int? Floor { get; set; }
 
