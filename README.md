@@ -19,6 +19,7 @@
 
 ## Komponensek leírása
 - A "Database_Export" mappában megtalálható az adatbázis sémája
+- A "appsettings.json" fájlban tárolt az adatbázis belépéshez használt jelszó, a DB-ből exportált connectionString-ként
 
 ## Felhasznált fő anyagok
 - https://www.youtube.com/watch?v=T-e554Zt3n4&t=1267s
